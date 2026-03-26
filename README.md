@@ -1,4 +1,4 @@
-# Learning Basic CRUD - Task Manager
+# Task Manager - CRUD
 
 A sleek, responsive, and fully functional Task Management (To-Do) application built with React, Vite, and Tailwind CSS. This application demonstrates core CRUD (Create, Read, Update, Delete) operations with seamless local data persistence.
 
