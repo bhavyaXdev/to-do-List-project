@@ -44,8 +44,8 @@ const App = () => {
   };
   return (
     <>
-      <div className="min-h-screen bg-neutral-900 flex justify-center items-center px-5 ">
-        <div className="w-full max-w-md flex flex-col border border-blue-200/30 h-[60vh]  min-h-[400px] max-h-[600px] shadow-md shadow-blue-300/10 rounded-lg md:px-7 px-5 py-7">
+      <div className="min-h-screen bg-[radial-gradient(circle_at_center,_#2d1b4e,_#160d27,_#090510)] flex justify-center items-center px-5 ">
+        <div className="w-full max-w-md flex flex-col border border-blue-200/30 h-[60vh]  min-h-[400px] max-h-[600px] shadow-md shadow-blue-300/10 rounded-lg md:px-7 px-5 py-7 bg-neutral-900/20 backdrop-blur-sm">
           <h1 className="text-blue-400 text-center text-3xl font-bold mb-6">
             To-do List
           </h1>
@@ -57,24 +57,26 @@ const App = () => {
             <input
               type="text"
               placeholder="Add a task"
-              className="flex-1 min-w-0 bg-neutral-750 outline-none focus:outline-none border border-neutral-700 text-white px-3 sm:px-4 rounded-lg py-2.5 sm:py-3 focus:border-blue-300 text-sm sm:text-base"
+              className="flex-1 min-w-0 bg-neutral-750 outline-none focus:outline-none border border-white/50 text-white px-3 sm:px-4 rounded-lg py-2.5 sm:py-3 focus:border-blue-300 text-sm sm:text-base"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
             />
             <button
               type="submit"
-              className="border border-neutral-500/40 px-3 sm:px-4 flex items-center gap-1 text-white rounded-md bg-blue-700 hover:bg-blue-600 transition-colors cursor-pointer text-sm font-medium whitespace-nowrap shrink-0"
+              className="border border-neutral-500/40 px-3 sm:px-4 flex items-center gap-1 text-white rounded-md bg-blue-700 hover:bg-blue-600 transition-colors cursor-pointer text-sm font-medium whitespace-nowrap shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={!inputVal.trim()}
             >
               <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="hidden sm:inline">Add Task</span>
               <span className="sm:hidden">Add</span>
             </button>
           </form>
-          <p className=" text-neutral-700 my-3 ">Tasks: {tasks.length}</p>
+          <p className=" text-white/50 my-2 ">Tasks: {tasks.length}</p>
+          <div className="border-b  border-white/20  mb-3"></div>
           {/* Task List */}
 
           <div
-            className={`flex-1 overflow-y-auto space-y-2 rounded-lg   [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-blue-500/30 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-blue-500/50 ${tasks.length === 0 ? "" : "px-2 py-1 shadow-inner shadow-blue-300/20 "}`}
+            className={`flex-1 overflow-y-auto space-y-2   rounded-lg   [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-blue-500/30 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-blue-500/50  ${tasks.length === 0 ? "" : "px-1 pr-5 "}`}
             draggable="false"
           >
             {tasks.length === 0 ? (
@@ -89,18 +91,18 @@ const App = () => {
             ) : (
               tasks.map((tasks) => (
                 <div
-                  className={`group bg-neutral-850/40 border border-neutral-700 rounded-lg  flex items-center justify-between   ${editId === tasks.id ? "pr-3 pl-2 " : "p-3"}`}
+                  className={`group bg-neutral-850/40 border border-white/20 rounded-lg  flex items-center justify-between hover:bg-white/[0.04] duration-300   h-12 ${editId === tasks.id ? "sm:px-5 px-3 md:px-3 " : "p-3"}`}
                   key={tasks.id}
                 >
                   {editId === tasks.id ? (
                     <div className="flex-1 flex justify-between">
                       <input
                         type="text"
-                        className="bg-neutral-750 outline-none focus:outline-none border border-blue-300 text-white px-3 rounded-lg py-0 h-10 flex self-center focus:border-blue-300"
+                        className={`bg-neutral-750 outline-none focus:outline-none border border-blue-300 text-white ps-1 rounded-lg py-0 h-8 flex self-center focus:border-blue-300 ${editId === tasks.id? "w-30  max-w-60 md:w-60":""}`}
                         value={editValue}
                         onChange={(e) => setEditValue(e.target.value)}
                       />
-                      <div className="flex flex-center gap-2 justify-center  py-3">
+                      <div className="flex items-center gap-2 justify-center  py-3">
                         <button
                           className="hover:bg-blue-300/20 text-blue-300 hover:text-blue-300 rounded-md p-1 cursor-pointer"
                           onClick={() => handleSaveEdit(tasks.id)}
@@ -118,7 +120,7 @@ const App = () => {
                   ) : (
                     <>
                       <h1 className="text-white">{tasks.text}</h1>
-                      <div className="md:opacity-0 group-hover:opacity-100 flex gap-2">
+                      <div className="lg:opacity-0 group-hover:opacity-100 flex animate-in duration-500   gap-2">
                         <button
                           className="hover:bg-blue-300/20 text-blue-300 hover:text-blue-300 rounded-md p-1 cursor-pointer"
                           onClick={() => handleEdit(tasks)}
@@ -138,6 +140,8 @@ const App = () => {
               ))
             )}
           </div>
+          <div className="border-b border-white/20 mt-3 "></div>
+
         </div>
       </div>
     </>
