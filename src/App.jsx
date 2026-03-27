@@ -80,7 +80,7 @@ const App = () => {
             draggable="false"
           >
             {tasks.length === 0 ? (
-              <div className="bg-neutral-800/50 border border-dashed border-neutral-700 h-full min-h-[150px] flex flex-col gap-2 items-center justify-center p-4 rounded-lg text-center">
+              <div className="bg-[#160d27/50] border border-dashed border-neutral-700 h-full min-h-[150px] flex flex-col gap-2 items-center justify-center p-4 rounded-lg text-center">
                 <p className="text-neutral-400 font-medium text-sm sm:text-base">
                   No Tasks Added Yet
                 </p>
