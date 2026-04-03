@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const cn = (...inputs) => twMerge(clsx(inputs));
 
-const API_URL = "http://localhost:5000/api/tasks";
+const API_URL = "https://to-do-full-stack-app-aeba.onrender.com/api/tasks";
 
 const AppContainer = () => {
   const [tasks, setTasks] = useState([]);
